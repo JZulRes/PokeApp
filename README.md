@@ -2,7 +2,7 @@
 
 PokeApp es una aplicación creada con Flutter, busca conectarte al mundo pokemon a través de su poderoso uso de Api y GoogleFireBase.
 
-## Getting Started
+## Información
 
 Esta aplicación utiliza los siguientes paquetes:
 
