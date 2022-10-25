@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:pokeapp/models/user_auth.dart';
+import 'package:pokeapp/services/user_auth.dart';
 import 'package:pokeapi/pokeapi.dart';
 import 'package:pokeapi/model/pokemon/pokemon.dart';
+import 'package:pokeapp/views/pokemondetails_page.dart';
+import 'package:pokeapp/services/string_service.dart';
 
 enum Menu { itemOne, itemTwo, itemThree }
 
 UserAuth userAuth = UserAuth();
+StringService stringService = StringService();
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,25 +46,12 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    PopupMenuItem<Menu>(
-                      value: Menu.itemTwo,
-                      child: Row(
-                        children: const [
-                          Icon(Icons.dark_mode),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text('Cambiar de tema')
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem<Menu>(
+                    PopupMenuItem(
                       value: Menu.itemThree,
                       child: Text(userAuth.getUserEmail()),
-                    ),
+                    )
                   ]),
         ],
-        backgroundColor: Colors.white,
         title: const Text('Lista de Pokemons'),
         elevation: 0,
       ),
@@ -69,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: FutureBuilder(
-              future: PokeAPI.getObjectList<Pokemon>(1, 30),
+              future: PokeAPI.getObjectList<Pokemon>(1, 20),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<Pokemon?>? pokemonList = snapshot.data;
@@ -92,27 +82,32 @@ class _HomePageState extends State<HomePage> {
         crossAxisCount: 2,
       ),
       itemCount: pokemonList.length,
-      itemBuilder: (BuildContext context, index) {
-        return Card(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image(
-                  image: NetworkImage(
-                      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonList[index]?.id}.png'),
-                  height: 100,
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  pokemonList[index]?.name.toString() ?? '',
-                  style: const TextStyle(
-                    fontSize: 15,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: ((context) {
+              return PokemonDetails(pokemonList: pokemonList[index]);
+            })));
+          },
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(
+                    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonList[index]?.id}.png',
+                    height: 100,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 10),
+                  Text(
+                    stringService.capitalizeOnlyFirstLater(pokemonList[index]?.name.toString() ?? ''),
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:pokeapp/models/user_auth.dart';
+import 'package:pokeapp/services/user_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 UserAuth userAuth = UserAuth();
@@ -43,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
-                  // The validator receives the text that the user has entered.
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     hintText: 'Ingresa tu correo',
@@ -60,7 +59,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 15),
                 TextFormField(
-                  // The validator receives the text that the user has entered.
                   obscureText: true,
                   enableSuggestions: false,
                   autocorrect: false,

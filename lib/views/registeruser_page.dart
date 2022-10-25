@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import 'package:pokeapp/models/user_auth.dart';
+import 'package:pokeapp/services/user_auth.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 UserAuth userAuth = UserAuth();
@@ -32,7 +32,6 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: const Text(''),
         elevation: 0,
       ),
