@@ -85,10 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: const Text('Ingresar'),
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  width: 200,
-                  height: 1,
-                  color: Colors.black,
+                const Divider(
+                  height: 10,
+                  thickness: 1,
                 ),
                 const SizedBox(height: 15),
                 ElevatedButton(

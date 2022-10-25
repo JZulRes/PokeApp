@@ -21,7 +21,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
   void checkUser() {
     setState(() {
       if (userAuth.activeUser() == false) {
-        Alert(context: context, title: 'Login Fallido', desc: 'Revisa tu contraseña o correo, contraseña minimo de 6 digitos').show();
+        Alert(context: context, title: 'Login Fallido', desc: 'Revisa tu contraseña o correo, contraseña minima de 6 digitos').show();
       } else {
         Navigator.pop(context);
       }
