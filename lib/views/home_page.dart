@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: FutureBuilder(
-              future: PokeAPI.getObjectList<Pokemon>(1, 20),
+              future: PokeAPI.getObjectList<Pokemon>(1, 100),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<Pokemon?>? pokemonList = snapshot.data;

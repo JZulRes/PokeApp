@@ -35,7 +35,7 @@ class _PopUpMenuHomeState extends State<PopUpMenuHome> {
               SizedBox(
                 width: 5,
               ),
-              Text('Cerrar sesion'),
+              Text('Cerrar sesión'),
             ],
           ),
         ),

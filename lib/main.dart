@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:pokeapp/views/login_page.dart';
 import 'package:pokeapp/views/registeruser_page.dart';
 import 'package:pokeapp/views/home_page.dart';
-import 'package:pokeapp/views/pokemondetails_page.dart';
 import 'package:pokeapp/themes/app_theme.dart';
 
 ThemeApp themeApp = ThemeApp();
